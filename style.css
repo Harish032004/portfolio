@@ -1377,3 +1377,55 @@ img {
     max-width: 100%;
 }
 
+/* ===== FIX DESKTOP NAVBAR VISIBILITY ===== */
+
+/* Show navbar on desktop, hide hamburger */
+@media (min-width: 769px) {
+    .hamburger {
+        display: none !important;
+    }
+    
+    .navbar {
+        display: flex !important;
+        position: static !important;
+        width: auto !important;
+        height: auto !important;
+        background: transparent !important;
+        padding: 0 !important;
+        box-shadow: none !important;
+    }
+    
+    .navbar a {
+        margin-left: 3.5rem;
+        font-size: 1.7rem;
+        padding: 0 !important;
+    }
+    
+    .navbar a::after {
+        display: block !important;
+    }
+}
+
+/* Fix mobile view - show hamburger only on mobile */
+@media (max-width: 768px) {
+    .hamburger {
+        display: flex !important;
+    }
+    
+    .navbar {
+        display: none;
+    }
+    
+    .navbar.active {
+        display: flex;
+    }
+}
+
+/* Ensure header layout works on all screens */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
