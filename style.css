@@ -31,11 +31,16 @@ body {
     background: var(--bg-color);
     color: var(--text-color);
     line-height: 1.6;
+    max-width: 100%;
+    overflow-x: hidden;
 }
 
 section {
     min-height: 100vh;
     padding: 10rem 9% 2rem;
+    width: 100%;
+    max-width: 100vw;
+    overflow: hidden;
 }
 
 .heading {
@@ -148,13 +153,14 @@ section {
     width: 100%;
 }
 
-/* ===== HAMBURGER MENU FIX ===== */
+/* ===== HAMBURGER MENU - DESKTOP: HIDDEN, MOBILE: VISIBLE ===== */
 .hamburger {
     display: none;
     flex-direction: column;
     cursor: pointer;
     z-index: 1001;
     padding: 0.5rem;
+    margin-left: auto;
 }
 
 .hamburger .bar {
@@ -910,63 +916,40 @@ section {
     color: var(--bg-color);
 }
 
-/* ===== ENHANCED RESPONSIVE DESIGN ===== */
+/* ===== RESPONSIVE DESIGN ===== */
 
-/* Large Desktop (1440px and above) */
-@media (min-width: 1440px) {
-    .container {
-        max-width: 1400px;
-        margin: 0 auto;
+/* Desktop (769px and above) - SHOW NAVBAR, HIDE HAMBURGER */
+@media (min-width: 769px) {
+    .hamburger {
+        display: none !important;
     }
     
-    .home-content h1 {
-        font-size: 6rem;
+    .navbar {
+        display: flex !important;
+        position: static !important;
+        width: auto !important;
+        height: auto !important;
+        background: transparent !important;
+        flex-direction: row !important;
+        padding: 0 !important;
+    }
+    
+    .navbar a {
+        margin: 0 0 0 3.5rem !important;
+        font-size: 1.7rem !important;
+        padding: 0 !important;
+        display: block !important;
+    }
+    
+    .navbar a::after {
+        display: block !important;
     }
 }
 
-/* Desktop (1200px - 1439px) */
-@media (max-width: 1200px) {
-    html {
-        font-size: 55%;
-    }
-    
-    section {
-        padding: 8rem 5% 2rem;
-    }
-    
-    .home-content h1 {
-        font-size: 5rem;
-    }
-}
-
-/* Tablet Landscape (992px - 1199px) */
-@media (max-width: 991px) {
-    .header {
-        padding: 2rem 4%;
-    }
-    
-    section {
-        padding: 8rem 4% 2rem;
-    }
-    
-    .home-content h1 {
-        font-size: 4.5rem;
-    }
-    
-    .about-container {
-        grid-template-columns: 1fr;
-        gap: 4rem;
-    }
-    
-    .projects-container {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-/* Tablet Portrait & Mobile Landscape (768px - 991px) */
+/* Tablet (768px and below) - SHOW HAMBURGER, HIDE NAVBAR */
 @media (max-width: 768px) {
     .hamburger {
-        display: flex !important; /* Force show hamburger */
+        display: flex !important;
     }
     
     .navbar {
@@ -982,22 +965,25 @@ section {
         padding-top: 5rem;
         transition: all 0.5s ease;
         box-shadow: 0 10px 27px rgba(0, 0, 0, 0.2);
+        display: none;
     }
     
     .navbar.active {
         left: 0;
+        display: flex;
     }
     
     .navbar a {
-        margin: 1.5rem 0;
-        font-size: 2rem;
-        padding: 1rem 2rem;
+        margin: 1.5rem 0 !important;
+        font-size: 2rem !important;
+        padding: 1rem 2rem !important;
     }
     
     .navbar a::after {
         display: none;
     }
     
+    /* Home section adjustments */
     .home-content h1 {
         font-size: 4rem;
     }
@@ -1020,6 +1006,12 @@ section {
         max-width: 250px;
     }
     
+    /* Layout adjustments */
+    .about-container {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+    }
+    
     .education-row {
         grid-template-columns: 1fr;
         gap: 3rem;
@@ -1040,6 +1032,10 @@ section {
     }
     
     .about-details {
+        grid-template-columns: 1fr;
+    }
+    
+    .projects-container {
         grid-template-columns: 1fr;
     }
     
@@ -1068,10 +1064,6 @@ section {
     
     .text-animate {
         height: 50px;
-    }
-    
-    .projects-container {
-        grid-template-columns: 1fr;
     }
     
     .project-card {
@@ -1180,6 +1172,11 @@ section {
     .animated-title {
         font-size: 2rem;
     }
+    
+    .navbar {
+        height: 100vh;
+        overflow-y: auto;
+    }
 }
 
 /* Very small height screens */
@@ -1208,6 +1205,7 @@ section {
 img {
     max-width: 100%;
     height: auto;
+    display: block;
 }
 
 .about-content p,
@@ -1228,89 +1226,24 @@ img {
     background: var(--bg-color);
     color: var(--text-color);
 }
-/* ===== HAMBURGER MENU - MOBILE ONLY ===== */
 
-/* Hide hamburger on desktop */
-.hamburger {
-    display: none;
-    flex-direction: column;
-    cursor: pointer;
-    z-index: 1001;
-    padding: 0.5rem;
-    margin-left: auto;
+/* ===== FIX HORIZONTAL SCROLLING ===== */
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
 }
 
-.hamburger .bar {
-    width: 25px;
-    height: 3px;
-    background: var(--text-color);
-    margin: 3px 0;
-    transition: all 0.3s ease;
-    border-radius: 2px;
+section, .header, .footer {
+    width: 100%;
+    max-width: 100vw;
 }
 
-.hamburger.active .bar:nth-child(1) {
-    transform: translateY(8px) rotate(45deg);
-    background: var(--primary-color);
+.home, .video-background, .video-background video {
+    width: 100vw;
+    max-width: 100%;
 }
 
-.hamburger.active .bar:nth-child(2) {
-    opacity: 0;
-}
-
-.hamburger.active .bar:nth-child(3) {
-    transform: translateY(-8px) rotate(-45deg);
-    background: var(--primary-color);
-}
-
-/* Show navbar on desktop */
-@media (min-width: 769px) {
-    .navbar {
-        display: flex !important;
-        position: static !important;
-        width: auto !important;
-        height: auto !important;
-        background: transparent !important;
-        flex-direction: row !important;
-        padding: 0 !important;
-    }
-    
-    .navbar a {
-        display: block !important;
-        margin: 0 0 0 3.5rem !important;
-        font-size: 1.7rem !important;
-        padding: 0 !important;
-    }
-}
-
-/* Show hamburger and handle mobile navbar */
-@media (max-width: 768px) {
-    .hamburger {
-        display: flex !important;
-    }
-    
-    .navbar {
-        position: fixed;
-        top: 100%;
-        left: -100%;
-        width: 100%;
-        height: calc(100vh - var(--nav-height));
-        background: var(--bg-color);
-        flex-direction: column;
-        justify-content: flex-start;
-        align-items: center;
-        padding-top: 5rem;
-        transition: all 0.5s ease;
-        box-shadow: 0 10px 27px rgba(0, 0, 0, 0.2);
-    }
-    
-    .navbar.active {
-        left: 0;
-    }
-    
-    .navbar a {
-        margin: 1.5rem 0 !important;
-        font-size: 2rem !important;
-        padding: 1rem 2rem !important;
-    }
+.home-content {
+    width: 100%;
+    max-width: 100%;
 }
