@@ -1124,3 +1124,203 @@ section, .header, .footer {
     width: 100%;
     max-width: 100%;
 }
+
+
+/* ===== IMAGE OPTIMIZATION ===== */
+.about-img img,
+.project-img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    transition: transform 0.3s ease;
+    /* Add loading optimization */
+    loading: lazy;
+    background: linear-gradient(45deg, #333, #555);
+}
+
+/* Preload critical images */
+.about-img img {
+    background: linear-gradient(45deg, #333, #555);
+    min-height: 400px;
+    object-fit: cover;
+}
+
+.project-img {
+    background: linear-gradient(45deg, #222, #444);
+    min-height: 180px;
+    object-fit: cover;
+}
+
+/* Add blur effect while loading */
+img[data-src] {
+    filter: blur(5px);
+    transition: filter 0.3s ease;
+}
+
+img {
+    filter: blur(0);
+}
+
+
+/* ===== HOME SECTION - FIXED ===== */
+.home {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.video-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+.video-background video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.video-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+}
+
+.home-content {
+    text-align: center;
+    max-width: 800px;
+    z-index: 2; /* Increased z-index */
+    padding: 0 2rem;
+    position: relative;
+}
+
+.home-content h1 {
+    font-size: 5.5rem;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+}
+
+.orange-text {
+    color: var(--primary-color);
+}
+
+.text-animate {
+    height: 60px;
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.animated-title {
+    font-size: 3.2rem;
+    font-weight: 600;
+    color: var(--primary-color);
+    position: relative;
+    display: inline-block;
+}
+
+.animated-title::after {
+    content: '|';
+    position: absolute;
+    right: -8px;
+    color: var(--primary-color);
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0; }
+}
+
+.intro-text {
+    font-size: 1.8rem;
+    margin-bottom: 3rem;
+    line-height: 1.8;
+}
+
+.btn-box {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-bottom: 3rem;
+    flex-wrap: wrap;
+}
+
+.home-sci {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-bottom: 4rem; /* Added margin to separate from scroll */
+    flex-wrap: wrap;
+    position: relative;
+    z-index: 3;
+}
+
+.home-sci a {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+    background: transparent;
+    border: 2px solid var(--color);
+    border-radius: 50%;
+    font-size: 2.5rem;
+    color: var(--color);
+    transition: all 0.3s ease;
+    position: relative;
+    z-index: 4;
+}
+
+.home-sci a:hover {
+    background: var(--color);
+    color: var(--bg-color);
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(255, 255, 255, 0.2);
+}
+
+/* FIXED SCROLL INDICATOR - No overlap */
+.scroll-indicator {
+    position: absolute;
+    bottom: 2rem; /* Reduced from 3rem */
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    color: var(--text-color);
+    font-size: 1.4rem;
+    z-index: 2; /* Lower than social icons */
+}
+
+.scroll-arrow {
+    width: 2px;
+    height: 25px; /* Reduced height */
+    background: var(--primary-color);
+    margin: 0.5rem auto;
+    animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-7px); /* Reduced bounce */
+    }
+    60% {
+        transform: translateY(-3px);
+    }
+}
+
