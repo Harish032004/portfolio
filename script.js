@@ -1,3 +1,43 @@
+// Image Loading Optimization
+document.addEventListener('DOMContentLoaded', function() {
+    // Lazy load images
+    const images = document.querySelectorAll('img');
+    
+    const imageOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px 50px 0px'
+    };
+    
+    const imageObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const img = entry.target;
+                img.src = img.getAttribute('data-src');
+                img.classList.remove('lazy');
+                imageObserver.unobserve(img);
+            }
+        });
+    }, imageOptions);
+    
+    images.forEach(img => {
+        if (img.getAttribute('data-src')) {
+            imageObserver.observe(img);
+        }
+    });
+    
+    // Preload critical images
+    const preloadImages = [
+        './IMG_2730.JPG',
+        './WhatsApp Image 2025-06-29 at 5.34.53 PM.jpeg'
+    ];
+    
+    preloadImages.forEach(src => {
+        const img = new Image();
+        img.src = src;
+    });
+});
+
+
 // DOM Content Loaded
 document.addEventListener('DOMContentLoaded', function() {
     // ===== EMAILJS CONFIGURATION =====
@@ -428,3 +468,4 @@ window.addEventListener('load', animateSkillBars);
 
 // Animate when scrolling
 window.addEventListener('scroll', animateSkillBars);
+
