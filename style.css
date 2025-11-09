@@ -1324,3 +1324,87 @@ img {
     }
 }
 
+
+/* ===== ORANGE DROPDOWN STYLES ===== */
+.project-select,
+.contact-form select {
+    width: 100%;
+    padding: 1.5rem;
+    font-size: 1.6rem;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    color: var(--primary-color) !important; /* Orange text */
+    font-weight: 700; /* Bold text */
+    transition: all 0.3s ease;
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ee6b07' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 1.5rem center;
+    background-size: 1.5rem;
+}
+
+/* Focus state */
+.project-select:focus,
+.contact-form select:focus {
+    border-color: var(--primary-color);
+    background: rgba(255, 255, 255, 0.15);
+    box-shadow: 0 0 10px rgba(238, 107, 7, 0.3);
+    color: var(--primary-color) !important;
+}
+
+/* Dropdown options styling */
+.project-select option,
+.contact-form select option {
+    background: var(--bg-color) !important;
+    color: var(--primary-color) !important; /* Orange text for options */
+    font-weight: 600;
+    font-size: 1.6rem;
+    padding: 1rem;
+}
+
+/* First option (placeholder) - make it stand out */
+.project-select option[value=""],
+.contact-form select option[value=""] {
+    color: var(--primary-color) !important;
+    font-weight: 700;
+    background: var(--bg-color) !important;
+}
+
+/* Other options */
+.project-select option:not([value=""]),
+.contact-form select option:not([value=""]) {
+    color: var(--primary-color) !important;
+    background: var(--second-bg-color) !important;
+}
+
+/* Hover state */
+.project-select option:hover,
+.contact-form select option:hover {
+    background: var(--primary-color) !important;
+    color: var(--bg-color) !important;
+}
+
+/* Selected option */
+.project-select option:checked,
+.contact-form select option:checked {
+    background: var(--primary-color) !important;
+    color: var(--bg-color) !important;
+    font-weight: 700;
+}
+
+/* Make sure text is always visible */
+.project-select:invalid,
+.contact-form select:invalid {
+    color: var(--primary-color) !important;
+}
+
+.project-select:valid,
+.contact-form select:valid {
+    color: var(--primary-color) !important;
+}
+
+
