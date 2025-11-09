@@ -121,15 +121,17 @@ section {
 .navbar {
     display: flex;
     align-items: center;
+    gap: 1rem;
 }
 
 .navbar a {
     font-size: 1.7rem;
     color: var(--text-color);
-    margin-left: 3.5rem;
     font-weight: 500;
     transition: color 0.3s ease;
     position: relative;
+    white-space: nowrap;
+    padding: 0.5rem 1rem;
 }
 
 .navbar a:hover,
@@ -160,7 +162,6 @@ section {
     cursor: pointer;
     z-index: 1001;
     padding: 0.5rem;
-    margin-left: auto;
 }
 
 .hamburger .bar {
@@ -935,9 +936,9 @@ section {
     }
     
     .navbar a {
-        margin: 0 0 0 3.5rem !important;
-        font-size: 1.7rem !important;
-        padding: 0 !important;
+        margin: 0 0 0 1.5rem !important;
+        font-size: 1.6rem !important;
+        padding: 0.5rem 1rem !important;
         display: block !important;
     }
     
@@ -977,6 +978,8 @@ section {
         margin: 1.5rem 0 !important;
         font-size: 2rem !important;
         padding: 1rem 2rem !important;
+        width: 100%;
+        text-align: center;
     }
     
     .navbar a::after {
@@ -1246,4 +1249,57 @@ section, .header, .footer {
 .home-content {
     width: 100%;
     max-width: 100%;
+}
+
+/* ===== NOTIFICATION STYLES ===== */
+.email-notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 1.5rem 2rem;
+    border-radius: 10px;
+    color: white;
+    font-size: 1.4rem;
+    z-index: 10000;
+    animation: slideInRight 0.3s ease;
+    max-width: 400px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.email-notification.success {
+    background: #00b894;
+}
+
+.email-notification.error {
+    background: #ff4757;
+}
+
+.notification-content {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.notification-content i {
+    font-size: 2rem;
+}
+
+@keyframes slideInRight {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@media (max-width: 768px) {
+    .email-notification {
+        top: 10px;
+        right: 10px;
+        left: 10px;
+        max-width: none;
+    }
 }
